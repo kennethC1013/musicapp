@@ -1,0 +1,19 @@
+.App {
+  text-align: center;
+}
+
+header {
+  background-color: powderblue;
+  height: 5em;
+  padding: 0 7em;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.body {
+  display: flex;
+  border: 1px solid black;
+  justify-content: center;
+  height: auto;
+}
