@@ -11,13 +11,16 @@ function App() {
   const [playlist, setPlaylist] = useState([]);
 
   const addTrackToPlaylist = (track) => {
-    setPlaylist(prevPlaylist => [...playlist, track])
+    const trackExists = playlist.some(playlistTrack => playlistTrack.id === track.id);
+    if (!trackExists) {
+      setPlaylist(prevPlaylist => [...playlist, track])
+    } else {
+      alert('Track already in playlist')
+    }
   }
 
   const removeTrackFromPlaylist = (track) => {
-    const updatedPlaylist = playlist.filter(playlistTrack => {
-      return playlistTrack.id !== track.id
-    })
+    const updatedPlaylist = playlist.filter(playlistTrack => playlistTrack.id !== track.id);
     setPlaylist(updatedPlaylist);
   }
 

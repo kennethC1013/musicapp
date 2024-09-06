@@ -109,13 +109,13 @@ const music = {
             album: "DAMN."
         },
         {
-            id: 18,
+            id: 19,
             name: "GOD.",
             artist: "Kendrick Lamar",
             album: "DAMN."
         },
         {
-            id: 19,
+            id: 20,
             name: "DUCKWORTH.",
             artist: "Kendrick Lamar",
             album: "DAMN."
