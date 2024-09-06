@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import './SearchResults.css'
 import Track from '../Track/Track.js'
@@ -13,6 +13,8 @@ export default function SearchResults({ searchResults = [], addTrackToPlaylist }
         searchResults.forEach(track => {
         });
     }, [searchResults])
+
+
 
     return (
         <div className='SearchResults'>
