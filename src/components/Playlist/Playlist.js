@@ -31,7 +31,7 @@ export default function Playlist({ playlistTracks, removeTrackFromPlaylist, play
                             onChange={handleNameChange}
                             defaultValue={'New Playlist'}
                         />
-                        <buton onClick={handleNameConfirm}>Confirm</buton>
+                        <button onClick={handleNameConfirm}>Confirm</button>
                 </div>
             )}
             {playlistTracks.length > 0 ? (

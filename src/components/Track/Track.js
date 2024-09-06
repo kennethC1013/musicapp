@@ -18,6 +18,7 @@ Track.propTypes = {
             id: PropTypes.number.isRequired,
             name: PropTypes.string.isRequired,
             artist: PropTypes.string.isRequired,
-            album: PropTypes.string.isRequired,
+           album: PropTypes.string.isRequired,
+            uri: PropTypes.string
         }).isRequired
 }
