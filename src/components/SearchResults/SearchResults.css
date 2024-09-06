@@ -9,10 +9,5 @@
     flex-direction: column;
     justify-content: center;
     border: 3px solid pink;
-    line-height: 1em;
-}
-
-.songInfo {
-    border: 1px black solid;
 }
 

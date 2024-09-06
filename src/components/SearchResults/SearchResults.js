@@ -1,24 +1,37 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import PropTypes from 'prop-types'
 import './SearchResults.css'
+import Track from '../Track/Track.js'
 
-export default function SearchResults({ searchResults = []}) {
+export default function SearchResults({ searchResults = [], addTrackToPlaylist }) {
+
+    const handleClick = (track) => {
+        addTrackToPlaylist(track)
+    }
+
+    useEffect(() => {
+        searchResults.forEach(track => {
+        });
+    }, [searchResults])
 
     return (
         <div className='SearchResults'>
             <h1>Results</h1>
             <div className='songContainer'>
-                {SearchResults.length > 0? (
-                    searchResults.map(track => (
-                    <div key={track.id} className='songInfo'>
-                        <h1 className='title'>{track.name}</h1>
-                        <h2 className='artist'>{track.artist}</h2>
-                        <h3 className='album'>{track.album}</h3>
-                        <button className='actionButton'><p>+</p></button>
-                        </div>
-                    ))
+                {searchResults.length > 0 ? (
+                    searchResults.map(track => {
+                    
+                        return (
+                            <div key={track.id}>
+                                <Track track={track} />
+                                <button className='add' onClick={() => handleClick(track)}>
+                                    Add
+                                </button>
+                            </div>
+                        );
+                    })
                 ) : (
-                        <p>No results found</p>
+                    <p>No results found</p>
                 )}
             </div>
         </div>
@@ -33,5 +46,6 @@ SearchResults.propTypes = {
             artist: PropTypes.string.isRequired,
             album: PropTypes.string.isRequired,
         })
-    )
+    ).isRequired,
+    addTrackToPlaylist: PropTypes.func.isRequired
 }
