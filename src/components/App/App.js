@@ -9,6 +9,18 @@ function App() {
 
   const [searchResults, setSearchResults] = useState([]);
   const [playlist, setPlaylist] = useState([]);
+  const [playlistName, setPlaylistName] = useState('New Playlist');
+  const [isNameConfirmed, setIsNameConfirmed] = useState(false);
+  const [showPlaylist, setShowPlaylist] = useState(false)
+
+  const updatedPlaylistName = useCallback((name) => {
+    setPlaylistName(name)
+    console.log('Playlist name updated to:', name)
+  }, [])
+
+  const confirmedPlaylistname = useCallback(() => {
+    setIsNameConfirmed(true)
+  }, [])
 
   const addTrackToPlaylist = (track) => {
     const trackExists = playlist.some(playlistTrack => playlistTrack.id === track.id);
@@ -34,10 +46,12 @@ function App() {
     };
     });
     setSearchResults(updatedResults);
+    setShowPlaylist(true)
 }, []);
 
   const handleClick = () => {
     setSearchResults([]);
+    setShowPlaylist(false)
   };
 
   let content;
@@ -57,15 +71,23 @@ function App() {
     <div className="App">
       <header>
         <button onClick={handleClick}>Home</button>
-        <SearchBar onSearch={search} />
+        <SearchBar
+          onSearch={search}
+        />
       </header>
       <div className='body'>
         {content}
       </div>
-      <Playlist
-        playlistTracks={playlist}
-      removeTrackFromPlaylist={removeTrackFromPlaylist}
-      />
+      {showPlaylist && (
+        <Playlist
+          onConfirmName={confirmedPlaylistname}
+          isNameConfirmed={isNameConfirmed}
+          playlistName={playlistName}
+          onNameChange={updatedPlaylistName}
+          playlistTracks={playlist}
+          removeTrackFromPlaylist={removeTrackFromPlaylist}
+        />
+      )}
     </div>
   );
 }
