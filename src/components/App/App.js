@@ -54,6 +54,20 @@ function App() {
     setShowPlaylist(false)
   };
 
+  const savePlaylist = () => {
+    localStorage.setItem('savedPlaylist', JSON.stringify(playlist));
+    alert('Playlist saved!');
+  }
+
+  const loadSavedPlaylist = () => {
+    const savedPlaylist = localStorage.getItem('savedPlaylist');
+    if (savedPlaylist) {
+      setPlaylist(JSON.parse(savedPlaylist));
+    } else {
+      alert('No saved playlist found.')
+    }
+  }
+
   let content;
 
   if (searchResults.length === 0) {
@@ -71,9 +85,9 @@ function App() {
     <div className="App">
       <header>
         <button onClick={handleClick}>Home</button>
-        <SearchBar
-          onSearch={search}
-        />
+        <SearchBar onSearch={search} />
+        <button onClick={savePlaylist}>Save Playlist</button>
+        <button onClick={loadSavedPlaylist}>Load Playlist</button>
       </header>
       <div className='body'>
         {content}
