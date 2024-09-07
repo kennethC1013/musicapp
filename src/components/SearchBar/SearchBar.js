@@ -28,8 +28,8 @@ const SearchBar = ({onSearch}) => {
                 value={input}
                 onChange={handleInputChange}
             />
-            <button
-                className='SearchButton'
+            <button 
+                className='inputButton'
                 onClick={search}
                 disabled={!input.trim()}
             >

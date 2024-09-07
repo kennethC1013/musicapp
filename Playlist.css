@@ -1,0 +1,14 @@
+// Imports
+import ___CSS_LOADER_API_SOURCEMAP_IMPORT___ from "../../../node_modules/css-loader/dist/runtime/sourceMaps.js";
+import ___CSS_LOADER_API_IMPORT___ from "../../../node_modules/css-loader/dist/runtime/api.js";
+var ___CSS_LOADER_EXPORT___ = ___CSS_LOADER_API_IMPORT___(___CSS_LOADER_API_SOURCEMAP_IMPORT___);
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, `.playlist {
+    width: 40em;
+    height: auto;
+    border: 1px solid #45A29E;
+        display: flex
+}`, "",{"version":3,"sources":["webpack://./src/components/Playlist/Playlist.css"],"names":[],"mappings":"AAAA;IACI,WAAW;IACX,YAAY;IACZ;AACJ","sourcesContent":[".playlist {\n    width: 40em;\n    height: auto;\n    border: 1px solid #45A29E\n}"],"sourceRoot":""}]);
+// Exports
+___CSS_LOADER_EXPORT___.locals = {};
+export default ___CSS_LOADER_EXPORT___;

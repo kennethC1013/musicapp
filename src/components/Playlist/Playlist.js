@@ -31,14 +31,14 @@ export default function Playlist({ playlistTracks, removeTrackFromPlaylist, play
                             onChange={handleNameChange}
                             defaultValue={'New Playlist'}
                         />
-                        <button onClick={handleNameConfirm}>Confirm</button>
+                        <button className='inputButton' onClick={handleNameConfirm}>Confirm</button>
                 </div>
             )}
             {playlistTracks.length > 0 ? (
                 playlistTracks.map(track => (
                     <div key={track.id} className="tracks">
                         <Track track={track} />
-                        <button onClick={() => handleClick(track)}>Remove</button>
+                        <button className='removeButton' onClick={() => handleClick(track)}>Remove</button>
                     </div>
                 ))
             ) : (

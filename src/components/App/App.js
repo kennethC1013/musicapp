@@ -72,7 +72,7 @@ function App() {
   let content;
 
   if (searchResults.length === 0) {
-    content = <h1>This is the landing page!!</h1>;
+    content = <div className='landingPage'><h1>Welcome!</h1></div>;
   } else {
     content = (
       <SearchResults
@@ -85,14 +85,15 @@ function App() {
   return (
     <div className="App">
       <header>
-        <button onClick={handleClick}>Home</button>
+        <button className='clickButton' onClick={handleClick}>Home</button>
         <SearchBar onSearch={search} />
-        <button onClick={savePlaylist}>Save Playlist</button>
-        <button onClick={loadSavedPlaylist}>Load Playlist</button>
+        <button className='clickButton' onClick={savePlaylist}>Save Playlist</button>
+        <button className='clickButton' onClick={loadSavedPlaylist}>Load Playlist</button>
       </header>
       <div className='body'>
         {content}
       </div>
+      <div className='playlistContainer'>
       {showPlaylist && (
         <Playlist
           onConfirmName={confirmedPlaylistname}
@@ -102,7 +103,8 @@ function App() {
           playlistTracks={playlist}
           removeTrackFromPlaylist={removeTrackFromPlaylist}
         />
-      )}
+        )}
+        </div>
     </div>
   );
 }

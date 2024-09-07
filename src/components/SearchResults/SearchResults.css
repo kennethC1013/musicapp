@@ -1,13 +1,19 @@
-.SearchResults {
-    border: 1px solid black;
-    height: auto;
+.SearchResultsContainer {
+    padding: 0;
+    margin: 0;
     width: 40em;
+    border: 3px solid #45A29E;
+    padding-bottom: 1em;
 }
 
-.songContainer {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    border: 3px solid pink;
+.results {
+    border-bottom: 3px solid #45A29E;
+    color: #66FCF1;
+}
+
+.addButton {
+    border: none;
+    background-color: #66FCF1;
+    border-radius: 0.5em;
 }
 
