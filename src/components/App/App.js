@@ -2,7 +2,7 @@ import React, { useCallback, useState } from 'react';
 import SearchBar from '../SearchBar/SearchBar';
 import SearchResults from '../SearchResults/SearchResults';
 import Playlist from '../Playlist/Playlist';
-import music from '../../music';
+import Spotify from '../../util/spotify';
 import './App.css';
 
 function App() {
@@ -12,6 +12,16 @@ function App() {
   const [playlistName, setPlaylistName] = useState('New Playlist');
   const [isNameConfirmed, setIsNameConfirmed] = useState(false);
   const [showPlaylist, setShowPlaylist] = useState(false)
+
+  const search = useCallback(async (input) => {
+    const results = await Spotify.search(input);
+    const updatedResults = results.map(track => ({
+      ...track,
+      id: track.id
+    }));
+    setSearchResults(updatedResults);
+    setShowPlaylist(true)
+  }, []);
 
   const updatedPlaylistName = useCallback((name) => {
     setPlaylistName(name)
@@ -23,7 +33,11 @@ function App() {
   }, [])
 
   const addTrackToPlaylist = (track) => {
+    console.log('Attempting to add track', track);
+
     const trackExists = playlist.some(playlistTrack => playlistTrack.id === track.id);
+    console.log('Track exists in playlist', trackExists)
+
     if (!trackExists) {
       setPlaylist(prevPlaylist => [...playlist, track])
     } else {
@@ -35,19 +49,6 @@ function App() {
     const updatedPlaylist = playlist.filter(playlistTrack => playlistTrack.id !== track.id);
     setPlaylist(updatedPlaylist);
   }
-
-  const search = useCallback((input) => {
-    const results = music.search(input);
-    const updatedResults = results.map(track => {
-      const id = Number(track.id);
-      return {
-        ...track,
-        id: id
-    };
-    });
-    setSearchResults(updatedResults);
-    setShowPlaylist(true)
-}, []);
 
   const handleClick = () => {
     setSearchResults([]);

@@ -5,11 +5,14 @@ import Track from '../Track/Track.js'
 
 export default function SearchResults({ searchResults = [], addTrackToPlaylist }) {
 
+    console.log('Rendering SearchResults with searchResults:', searchResults)
+
     const handleClick = (track) => {
         addTrackToPlaylist(track)
     }
 
     useEffect(() => {
+        console.log('Search results updated')
         searchResults.forEach(track => {
         });
     }, [searchResults])
@@ -43,7 +46,7 @@ export default function SearchResults({ searchResults = [], addTrackToPlaylist }
 SearchResults.propTypes = {
     searchResults: PropTypes.arrayOf(
         PropTypes.shape({
-            id: PropTypes.number.isRequired,
+            id: PropTypes.string.isRequired,
             name: PropTypes.string.isRequired,
             artist: PropTypes.string.isRequired,
             album: PropTypes.string.isRequired,

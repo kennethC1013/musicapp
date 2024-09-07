@@ -15,7 +15,7 @@ export default function Track({ track }) {
 
 Track.propTypes = {
        track: PropTypes.shape({
-            id: PropTypes.number.isRequired,
+            id: PropTypes.string.isRequired,
             name: PropTypes.string.isRequired,
             artist: PropTypes.string.isRequired,
            album: PropTypes.string.isRequired,
