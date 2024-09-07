@@ -1,4 +1,12 @@
+.track {
+border-bottom: 1px solid white;
+}
+
 .songInfo {
-    border: 1px black solid;
-    line-height: 1em;
+    display: flex;
+    justify-content: center;
+}
+
+p {
+    padding: 0 1em;
 }
