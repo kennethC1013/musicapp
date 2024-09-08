@@ -3,12 +3,18 @@
     margin: 0;
     width: 40em;
     border: 3px solid #45A29E;
-    padding-bottom: 1em;
 }
 
 .results {
+    padding: 1em 0;
+    margin: 0;
     border-bottom: 3px solid #45A29E;
     color: #66FCF1;
+}
+
+.searchResultsTracks {
+    border-bottom: 1px solid #66FCF1;
+    padding-top: 1em;
 }
 
 .addButton {

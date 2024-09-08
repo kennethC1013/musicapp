@@ -78,7 +78,7 @@ function App() {
       <SearchResults
         addTrackToPlaylist={addTrackToPlaylist}
         searchResults={searchResults}
-      />
+        />
     )
   }
 
