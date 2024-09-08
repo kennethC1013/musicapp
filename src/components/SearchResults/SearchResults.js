@@ -27,7 +27,7 @@ export default function SearchResults({ searchResults = [], addTrackToPlaylist }
                     searchResults.map(track => {
                     
                         return (
-                            <div key={track.id}>
+                            <div className='searchResultsTracks'key={track.id}>
                                 <button className='addButton' onClick={() => handleClick(track)}>
                                     Add
                                 </button>
