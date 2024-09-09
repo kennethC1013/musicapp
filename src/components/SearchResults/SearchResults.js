@@ -22,16 +22,16 @@ export default function SearchResults({ searchResults = [], addTrackToPlaylist }
     return (
         <div className='SearchResultsContainer'>
             <h1 className='results'>Results</h1>
-            <div>
+            <div className='trackList'>
                 {searchResults.length > 0 ? (
                     searchResults.map(track => {
                     
                         return (
                             <div className='searchResultsTracks'key={track.id}>
+                                <Track track={track} />
                                 <button className='addButton' onClick={() => handleClick(track)}>
                                     Add
                                 </button>
-                                <Track track={track} />
                             </div>
                         );
                     })

@@ -1,13 +1,17 @@
 .playlist {
+    padding-bottom: 2em;
     margin: 2em;
     width: 40em;
     height: auto;
-    border: 3px solid #66FCF1;
+    border: 3px solid #45A29E;
+    border-radius: 3em;
 }
 
 .playlistTracks {
-    border-bottom: 1px solid #66FCF1;
     padding-bottom: 1em;
+    margin: 0;
+    border-bottom: 0.1px solid white;
+    color: #C5C6C7;
 }
 
 .playlistInput,
@@ -25,5 +29,7 @@
 .removeButton {
     border: none;
     background-color: #66FCF1;
+    background-color: #66FCF1;
+    border-radius: 0.5em;
 
 }

@@ -3,6 +3,7 @@
     margin: 0;
     width: 40em;
     border: 3px solid #45A29E;
+    border-radius: 3em;
 }
 
 .results {
@@ -12,9 +13,13 @@
     color: #66FCF1;
 }
 
+.trackList {
+    padding-bottom: 2em;
+}
+
 .searchResultsTracks {
-    border-bottom: 1px solid #66FCF1;
-    padding-top: 1em;
+    border-bottom: 0.1px solid white;
+    padding-bottom: 1em;
 }
 
 .addButton {
