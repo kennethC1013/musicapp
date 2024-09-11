@@ -1,5 +1,5 @@
 .playlist {
-    padding-bottom: 2em;
+    padding: 1em 0;
     margin: 2em;
     width: 40em;
     height: auto;
@@ -21,6 +21,12 @@
 }
 
 .inputButton {
+    background-color: transparent;
+    color: #C5C6C7;
+    border: 1px solid #66FCF1;
+}
+
+.submitPlaylist {
     background-color: transparent;
     color: #C5C6C7;
     border: 1px solid #66FCF1;

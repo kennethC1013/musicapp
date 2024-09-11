@@ -1,6 +1,6 @@
-import React, { useCallback, useState} from 'react'
-import PropTypes from 'prop-types'
-import './SearchBar.css'
+import React, { useCallback, useState } from 'react';
+import PropTypes from 'prop-types';
+import './SearchBar.css';
 
 const SearchBar = ({onSearch}) => {
     const [input, setInput] = useState('');
