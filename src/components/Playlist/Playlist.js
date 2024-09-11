@@ -55,7 +55,10 @@ Playlist.propTypes = {
             id: PropTypes.string.isRequired,
             name: PropTypes.string.isRequired,
             artist: PropTypes.string.isRequired,
-            album: PropTypes.string.isRequired,
+            album: PropTypes.string,
         })
-    ).isRequired
+    ).isRequired,
+    removeTrackFromPlaylist: PropTypes.func.isRequired,
+    playlistName: PropTypes.string.isRequired,
+    onNameChange: PropTypes.func.isRequired
 }

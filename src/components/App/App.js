@@ -13,10 +13,11 @@ function App() {
   const [isNameConfirmed, setIsNameConfirmed] = useState(false);
   const [showPlaylist, setShowPlaylist] = useState(false);
 
+
   const search = useCallback(async (input) => {
-    try {
       const results = await Spotify.search(input);
-      if (results.length > 0) {
+
+      if (Array.isArray(results) && results.length > 0) {
 
         const updatedResults = results.map(track => ({
           ...track,
@@ -26,22 +27,18 @@ function App() {
         setSearchResults(prevResults => {
           if (JSON.stringify(prevResults) !== JSON.stringify(updatedResults)) {
             return updatedResults;
-          }
+          };
           return prevResults;
         });
         setShowPlaylist(true);
       } else {
         setSearchResults([]);
         setShowPlaylist(false)
-      }
-    } catch (error) {
-      console.error('Error during search:', error)
-    }
+    };
   }, []);
 
   const updatedPlaylistName = useCallback((name) => {
     setPlaylistName(name)
-    console.log('Playlist name updated to:', name)
   }, [])
 
   const confirmedPlaylistname = useCallback(() => {
@@ -49,13 +46,9 @@ function App() {
   }, [])
 
   const addTrackToPlaylist = useCallback((track) => {
-    console.log('Attempting to add track', track);
     const trackExists = playlist.some(playlistTrack => playlistTrack.id === track.id);
-    console.log('Track exists in playlist', trackExists)
     if (!trackExists) {
       setPlaylist(prevPlaylist => [...playlist, track])
-    } else {
-      alert('Track already in playlist')
     }
   }, [playlist])
 

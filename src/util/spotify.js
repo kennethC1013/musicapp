@@ -1,11 +1,12 @@
 const clientId = '10a58e5cf48c4d01935946a1f4a3c649';
 const redirectUri = 'http://localhost:3000/';
 let accessToken;
+let tokenExpirationTime;
 
 const Spotify = {
-    getAccessToken() {
-        //Return the token if it's already available
-        if (accessToken) {
+   async getAccessToken() {
+        //Return the token if it's already available and not expired
+        if (accessToken && tokenExpirationTime && Date.now() < tokenExpirationTime) {
             return accessToken
         }
 
@@ -17,9 +18,7 @@ const Spotify = {
         if (accessTokenMatch && expiresInMatch) {
             accessToken = accessTokenMatch[1];
             const expiresIn = Number(expiresInMatch[1]);
-
-            // Clear accessToken after it expires
-            window.setTimeout(() => accessToken = '', expiresIn * 1000);
+            tokenExpirationTime = Date.now() + expiresIn * 1000
 
             // Clean up the URL
             window.history.replaceState({}, null, '/');
@@ -29,13 +28,14 @@ const Spotify = {
             //Redirect to SPotify authorization if no token found
             const accessUrl = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=token&scope=playlist-modify-public&redirect_uri=${redirectUri}`;
             window.location = accessUrl;
+            return null;
         }
     },
     async search(term) {
-        const accessToken = Spotify.getAccessToken();
+        const accessToken = await Spotify.getAccessToken();
         if (!accessToken) {
             console.error('Access Token not available.');
-            return []
+            return [];
         }
 
         try {
@@ -64,12 +64,12 @@ const Spotify = {
         }
     },
     async savePlaylist(name, trackUris) {
-        if (!name || !trackUris) {
+        if (!name || !trackUris.length) {
             console.error('Name or track URIs are missing.')
             return;
         }
 
-        const accessToken = Spotify.getAccessToken();
+        const accessToken = await Spotify.getAccessToken();
         if (!accessToken) {
             console.error('Access Token not available.')
         }
