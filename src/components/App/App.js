@@ -89,9 +89,7 @@ function App() {
     <div className="App">
       <header>
         <button className='clickButton' onClick={handleClick}>Home</button>
-        {searchResults.length > 0 && (
-        <button className='clickButton' onClick={savePlaylist}>Save Playlist</button>
-      )}
+
         <SearchBar onSearch={search} />
       </header>
       <div className='body'>
@@ -105,7 +103,8 @@ function App() {
           playlistName={playlistName}
           onNameChange={updatedPlaylistName}
           playlistTracks={playlist}
-          removeTrackFromPlaylist={removeTrackFromPlaylist}
+            removeTrackFromPlaylist={removeTrackFromPlaylist}
+            savePlaylist={savePlaylist}
         />
         )}
         </div>

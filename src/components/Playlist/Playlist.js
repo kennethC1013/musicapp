@@ -3,7 +3,7 @@ import Track from "../Track/Track";
 import './Playlist.css'
 import PropTypes from 'prop-types';
 
-export default function Playlist({ playlistTracks, removeTrackFromPlaylist, playlistName, onNameChange }) {
+export default function Playlist({ playlistTracks, removeTrackFromPlaylist, playlistName, onNameChange, savePlaylist }) {
 
     const [isNameConfirmed, setIsNameConfirmed] = useState(false)
 
@@ -23,14 +23,14 @@ export default function Playlist({ playlistTracks, removeTrackFromPlaylist, play
 
     return (
         <div className="playlist">
+            <button className='submitPlaylist' onClick={savePlaylist}>Save Playlist</button>
             {isNameConfirmed ? (
                 <h2 className="playlistName">{playlistName}</h2>
             ) : (
                 <div className="playlistInput">
-                        <input
-                            onChange={handleNameChange}
-                            defaultValue={'New Playlist'}
-                        />
+                    <input
+                        onChange={handleNameChange}
+                        defaultValue={'New Playlist'} />
                         <button className='inputButton' onClick={handleNameConfirm}>Confirm</button>
                 </div>
             )}
