@@ -1,7 +1,7 @@
 .SearchResultsContainer {
     padding: 0;
     margin: 0;
-    width: 40em;
+    min-width: 40em;
     border: 3px solid #45A29E;
     border-radius: 3em;
 }
@@ -18,13 +18,18 @@
 }
 
 .searchResultsTracks {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     border-bottom: 0.1px solid white;
-    padding-bottom: 1em;
+    padding-right: 1em;
+    padding: 1em;
 }
 
 .addButton {
     border: none;
     background-color: #66FCF1;
+    height: 1.5em;
     border-radius: 0.5em;
 }
 
