@@ -5,13 +5,12 @@ import PropTypes from 'prop-types';
 export default function Track({ track }) {
 
     return (
-            <div className='track'>
-            <h1 className='title'>{track.name}</h1>
-            <div className='songInfo'>
+        <div className='track'>
+            <img src={track.albumCover} alt={track.album} className="albumCover" />
+            <p className='title'>{track.name}</p>
                 <p className='artist'>{track.artist}</p>
                 <p className='album'>{track.album}</p>
                 </div>
-            </div>
     )
 }
 
