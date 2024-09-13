@@ -1,5 +1,5 @@
 const clientId = '10a58e5cf48c4d01935946a1f4a3c649';
-const redirectUri = 'http://localhost:3000/';
+const redirectUri = process.env.REACT_APP_REDIRECT_URI;
 let accessToken;
 let tokenExpirationTime;
 
