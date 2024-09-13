@@ -1,7 +1,7 @@
 {
   "name": "musicapp",
   "version": "0.1.0",
-  "homepage": "https://kennethC1013.github.io/musicapp",
+  "homepage": "https://heroic-treacle-53ec8d.netlify.app",
   "private": true,
   "dependencies": {
     "@testing-library/user-event": "^13.5.0",
