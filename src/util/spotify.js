@@ -26,7 +26,7 @@ const Spotify = {
             return accessToken;
         } else {
             //Redirect to SPotify authorization if no token found
-            const accessUrl = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=token&scope=playlist-modify-public&redirect_uri=${redirectUri}`;
+            const accessUrl = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=token&scope=playlist-modify-public%20user-top-read&redirect_uri=${redirectUri}`;
             window.location = accessUrl;
             return null;
         }
@@ -64,6 +64,38 @@ const Spotify = {
             console.error('Error during search:', error);
         }
     },
+
+    async topArtists() {
+        const accessToken = await Spotify.getAccessToken();
+        if (!accessToken) {
+            return [];
+        }
+        try {
+            const response = await fetch('https://api.spotify.com/v1/me/top/artists', {
+                headers: {
+                    Authorization: `Bearer ${accessToken}`
+                }
+            });
+            if (!response.ok) {
+                throw new Error('Failed to fetch artists.');
+            }
+            const jsonResponse = await response.json();
+
+            if (!jsonResponse.items) {
+                return [];
+            }
+            return jsonResponse.items.map(artists => ({
+                id: artists.id,
+                genres: artists.genres,
+                name: artists.name,
+                popularity: artists.popularity,
+                images: artists.images[0]?.url
+            }));
+        } catch (error){
+            console.error('Error retrieving top artist data:', error)
+        }
+    },
+    
     async savePlaylist(name, trackUris) {
         if (!name || !trackUris.length) {
             console.error('Name or track URIs are missing.')

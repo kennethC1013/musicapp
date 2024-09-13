@@ -1,8 +1,9 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useState, useEffect } from 'react';
 import SearchBar from '../SearchBar/SearchBar';
 import SearchResults from '../SearchResults/SearchResults';
 import Playlist from '../Playlist/Playlist';
 import Spotify from '../../util/spotify';
+import TopArtists from '../TopArtists/TopArtists';
 import './App.css';
 
 function App() {
@@ -12,6 +13,7 @@ function App() {
   const [playlistName, setPlaylistName] = useState('New Playlist');
   const [isNameConfirmed, setIsNameConfirmed] = useState(false);
   const [showPlaylist, setShowPlaylist] = useState(false);
+  const [favoriteArtists, setFavoriteArtists] = useState([]);
 
 
   const search = useCallback(async (input) => {
@@ -67,7 +69,27 @@ function App() {
     Spotify.savePlaylist(playlistName, trackUris).then(() => {
       setPlaylist([])
     });
-  }, [playlistName, playlist])
+  }, [playlistName, playlist]);
+
+  const handleFavoriteArtists = useCallback((artists) => {
+    if (Array.isArray(artists)) {
+      setFavoriteArtists(artists)
+    } else {
+      setFavoriteArtists([])
+    }
+  }, []);
+
+  useEffect(() => {
+    async function fetchArtists() {
+      try {
+        const artists = await Spotify.topArtists();
+        handleFavoriteArtists(artists);
+      } catch (error) {
+        console.error('Error fetching artists:', error)
+      }
+    }
+    fetchArtists();
+  }, [handleFavoriteArtists]);
 
   let content;
 
@@ -75,6 +97,7 @@ function App() {
     content = <div className='landingPage'>
       <h1>Welcome!</h1>
       <p>Welcome to MusicApp, your ultimate destination for discovering and managing your favorite tunes. With MusicApp, you can effortlessly search for tracks, create custom playlists, and stay on top of your favorite artists. Dive into a personalized music experience and let the rhythm guide you!</p>
+      <TopArtists artists={favoriteArtists} />
     </div>;
   } else {
     content = (

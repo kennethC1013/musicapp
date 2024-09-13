@@ -6,13 +6,15 @@ import Spotify from "./util/spotify";
 
 jest.mock('./util/Spotify', () => ({
     search: jest.fn(),
-    savePlaylist: jest.fn()
+    savePlaylist: jest.fn(),
+    topArtists: jest.fn()
 }));
 
 describe('App Component', () => {
     beforeEach(() => {
         Spotify.search.mockClear();
         Spotify.savePlaylist.mockClear();
+        Spotify.topArtists.mockClear();
     });
 
     //Search track test
@@ -24,9 +26,9 @@ describe('App Component', () => {
         await waitFor(() => {
             expect(screen.getByRole('button', { name: /Add/i })).toBeInTheDocument();
         });
-        
+
         fireEvent.click(screen.getByRole('button', { name: /Add/i }));
-       
+
     };
 
     it('Searches songs when the search function is called', async () => {
@@ -52,9 +54,9 @@ describe('App Component', () => {
         expect(testSongsElements).toHaveLength(2);
     });
     it('Removes a track from the playlist when the remove button is clicked', async () => {
-        
+
         render(<App />)
-        
+
         await searchAndAddTrack('Test');
 
         const testSongElements = screen.getAllByText(/Test Song/i);
@@ -70,11 +72,27 @@ describe('App Component', () => {
     it('Does not add duplicate tracks to the playlist', async () => {
 
         render(<App />)
-        
+
         await searchAndAddTrack('Test');
         await searchAndAddTrack('Test');
 
         const testSongElements = screen.getAllByText(/Test Song/i);
         expect(testSongElements).toHaveLength(2)
+    });
+    it('Displays top artists when fetched', async () => {
+        const mockTopArtists = [
+            { id: 'A1', name: 'Artist One', images: [{ url: 'http://example.com/image1.jpg' }] },
+            { id: 'A2', name: 'Artist Two', images: [{ url: 'http://example.com/image2.jpg' }] }
+        ];
+
+        Spotify.topArtists.mockResolvedValue(mockTopArtists);
+
+        render(<App />);
+
+        await waitFor(() => {
+            expect(Spotify.topArtists).toHaveBeenCalled();
+            expect(screen.getByText(/Artist One/i)).toBeInTheDocument();
+            expect(screen.getByText(/Artist Two/i)).toBeInTheDocument();
+        })
     })
 });
