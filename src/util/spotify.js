@@ -1,5 +1,5 @@
 const clientId = '10a58e5cf48c4d01935946a1f4a3c649';
-const redirectUri = process.env.REACT_APP_REDIRECT_URI;
+const redirectUri = 'https://heroic-treacle-53ec8d.netlify.app';
 let accessToken;
 let tokenExpirationTime;
 
